@@ -2,38 +2,49 @@
 
 VoorraadItems = ['product 1', 'product 2']
 
-def Voorraad():
-    AantalItems = len(VoorraadItems)
-    i = 0
 
+
+def Voorraad():
+    i = 0
+    AantalItems = len(VoorraadItems)
     while(AantalItems > i ):
         print("Item nummer", i + 1, ":", VoorraadItems[i])
         i = i + 1
 
 
-def VoorraadToevoegen():
-    print("test")
+def VoorraadToevoegen(NieuwProduct):
+    VoorraadItems.append(NieuwProduct)
+    print(NieuwProduct, "is nu toegevoegd aan de inventaris op positie", len(NieuwProduct) - 1)
 
 
 #uittesten
 
-running = True
+running1 = True
+running2 = True
 
-while running == True:
+while running1 == True:
 
     print("1: Geef vooraad weer")
     print("2: Voeg item toe")
-    keuze = input("Maak een keuze")
+    print("Maak een keuze:")
+    keuze = input()
 
     if keuze == '1':
         Voorraad()
-        beeindigen = input("wilt u het menu sluiten?")
+        print("Wilt u het menu afsluiten? Type ja als u wilt afsluiten, en type nee als u terug wilt naar het hoofdmenu.")
+        beeindigen = input()
         if beeindigen == "ja":
-            running = False
+            running1 = False
         
     elif keuze == '2':
-        VoorraadToevoegen()
-        running = False
+        while running2 == True:
+            NieuwProduct = input("Welk product wilt u toevoegen? Als u geen product wilt toevoegen schrijf dan cancel")
+            if NieuwProduct == 'cancel':
+                running2 = False
+            else:
+                VoorraadToevoegen(NieuwProduct)
+                
+        
 
     else:
         print("Invoer was onjuist, probeer opnieuw")
